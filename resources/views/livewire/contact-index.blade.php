@@ -1,6 +1,6 @@
 <div>
     @if (session()->has('message'))
-        <div class="alert alert-success">
+        <div class="alert alert-{{strpos(session('message'), 'deleted') ? 'warning':'succes'}}">
             {{ session('message') }}
         </div>
     @endif
@@ -27,7 +27,7 @@
                     <td>{{ $contact->phone }}</td>
                     <td>
                         <button wire:click="getContact({{$contact->id}})" class="btn btn-sm btn-info text-white">Edit</button>
-                        <button class="btn btn-sm btn-danger text-white">Delete</button>
+                        <button wire:click="destroy({{$contact->id}})" class="btn btn-sm btn-danger text-white">Delete</button>
                     </td>
                 </tr>
             @endforeach

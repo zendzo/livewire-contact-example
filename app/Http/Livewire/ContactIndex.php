@@ -30,6 +30,15 @@ class ContactIndex extends Component
         $this->emit('getContact', $contact);
     }
 
+    public function destroy($id)
+    {
+        if ($id) {
+            $contact = Contact::findOrfail($id);
+            $contact->delete();
+        }
+        session()->flash('message', 'Contact was deleted');
+    }
+
     public function handleContactStored($contact)
     {
         session()->flash('message', 'Contact '.$contact['name'].'  Successfully Created');
@@ -38,7 +47,7 @@ class ContactIndex extends Component
     public function handleContactUpdated($contact)
     {
         $this->editContact = false;
-        
+
         session()->flash('message','Contact '.$contact['name'].' Updated Successfully');
     }
 }
