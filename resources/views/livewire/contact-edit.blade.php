@@ -1,5 +1,5 @@
 <div>
-    <form action="#">
+    <form wire:submit.prevent="update" action="#">
         <div class="form-group">
             <div class="form-row">
                 <div class="col">
@@ -27,6 +27,6 @@
                 </div>
             </div>
         </div>
-        <button wire:click="update" class="btn btn-sm btn-primary">Save</button>
+        <button type="submit" class="btn btn-sm btn-primary">Save</button>
     </form>
 </div>

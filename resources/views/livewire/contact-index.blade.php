@@ -1,6 +1,6 @@
 <div>
     @if (session()->has('message'))
-        <div class="alert alert-{{strpos(session('message'), 'deleted') ? 'warning':'succes'}}">
+        <div class="alert alert-{{strpos(session('message'), 'deleted') ? 'warning':'success'}}">
             {{ session('message') }}
         </div>
     @endif
@@ -33,4 +33,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $contacts->links() }}
 </div>
