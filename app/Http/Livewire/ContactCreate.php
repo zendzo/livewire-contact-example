@@ -9,7 +9,7 @@ class ContactCreate extends Component
 {
     public $name;
     public $phone;
-    
+
     public function render()
     {
         return view('livewire.contact-create');
@@ -17,6 +17,11 @@ class ContactCreate extends Component
 
     public function store()
     {
+        $this->validate([
+            'name' => 'required|min:3',
+            'phone' => 'required|min:3|max:15'
+        ]);
+        
         if ($this->name == '' || $this->phone == '') {
             return;
         }
