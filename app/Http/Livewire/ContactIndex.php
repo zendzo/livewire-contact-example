@@ -16,6 +16,19 @@ class ContactIndex extends Component
 
     public $search;
 
+    /** 
+     * return back to orinal url if the search is null
+     * ex. home?search=value to home
+     * */  
+    protected $updatesQueryString = [
+        'search' => ['except' => '']
+    ];
+
+    public function mount()
+    {
+        $this->search = request()->query('search', $this->search);
+    }
+
     protected $listeners = [
         'contactStored' => 'handleContactStored',
         'contactUpdated' => 'handleContactUpdated'
