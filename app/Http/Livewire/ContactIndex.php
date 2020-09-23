@@ -12,6 +12,10 @@ class ContactIndex extends Component
 
     public $editContact = false;
 
+    public $paginate = 5;
+
+    public $search;
+
     protected $listeners = [
         'contactStored' => 'handleContactStored',
         'contactUpdated' => 'handleContactUpdated'
@@ -20,7 +24,9 @@ class ContactIndex extends Component
     public function render()
     {
         return view('livewire.contact-index',[
-            'contacts' => Contact::latest()->paginate(5),
+            'contacts' => $this->search === null ?
+            Contact::latest()->paginate($this->paginate) : 
+            Contact::where('name','like','%'.$this->search.'%')->paginate($this->paginate),
         ]);
     }
     
